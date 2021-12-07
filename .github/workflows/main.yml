@@ -16,4 +16,4 @@ jobs:
         shell: bash
         run: |
           gcloud container clusters list
-          gsutil list
+          gsutil list -p ${{ secrets.PROJECT_ID }} 

@@ -28,4 +28,4 @@ jobs:
         shell: bash
         run: |
           gcloud container clusters list
-          gsutil list -p $PROJECT_ID
+          gsutil ls

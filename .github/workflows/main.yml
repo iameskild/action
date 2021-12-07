@@ -3,6 +3,9 @@ name: play with it
 on:
   workflow_dispatch:
 
+env:
+  PROJECT_ID: ${{ secrets.PROJECT_ID }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,4 +19,4 @@ jobs:
         shell: bash
         run: |
           gcloud container clusters list
-          gsutil list -p ${{ secrets.PROJECT_ID }} 
+          gsutil list -p $PROJECT_ID

@@ -1,0 +1,13 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  GCP:
+    name: gcloud testing
+    runs-on: ubuntu-latest
+    steps:
+      - name: GCP auth
+        id: gcpauth
+        uses: google-github-actions/auth@v0.4.0
+        with:
+          credentials_json: ${{ secrets.GCLOUD_CREDENTIALS }}

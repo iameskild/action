@@ -20,8 +20,8 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v0.3.0
         with:
-          service_account_key: ${{ secrets.GCLOUD_KEY }}
           export_default_credentials: true
+          project_id: $PROJECT_ID
 
       - name: Use gcloud CLI
         run: gcloud info

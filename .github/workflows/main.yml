@@ -5,6 +5,7 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.PROJECT_ID }}
+  GCLOUD_KEY: ${{ secrets.GCLOUD_CREDENTIALS }}
 
 jobs:
   build:
@@ -19,8 +20,9 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v0.3.0
         with:
-          credentials_json: ${{ secrets.GCLOUD_CREDENTIALS }}
-          
+          service_account_key: ${{ secrets.GCLOUD_KEY }}
+          export_default_credentials: true
+
       - name: Use gcloud CLI
         run: gcloud info
 

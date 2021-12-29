@@ -3,6 +3,13 @@ name: play with it
 on:
   workflow_dispatch:
 
+env:
+  CLOUD_PROVIDER: gcp
+  QHUB_GH_BRANCH: main
+  QHUB_DOMAIN: eaetest.qhub.dev
+  QHUB_PROJECT_NAME: eaetest
+
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,4 +35,26 @@ jobs:
         run: |
           gcloud container clusters list
           gsutil ls
-          gsutil rm -r gs://eaegcp-dev-terraform-state/
+          
+      - name: Install QHub
+        shell: bash
+        run: |
+          git clone https://git@github.com/quansight/qhub.git
+          cd qhub
+          git fetch origin $QHUB_GH_BRANCH
+          git checkout $QHUB_GH_BRANCH
+          pip install .
+          pwd
+
+      - name: Init QHub
+        shell: bash
+        run: |
+          mkdir qhub-new
+          cd qhub-new
+          qhub init $CLOUD_PROVIDER \
+          --domain $QHUB_DOMAIN \
+          --project $QHUB_PROJECT_NAME \
+          --auth-provider password \
+          --disable-prompt
+          echo "*** qhub-config.yaml *** "
+          cat "qhub-config.yaml"

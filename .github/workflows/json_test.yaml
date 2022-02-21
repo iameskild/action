@@ -1,13 +1,13 @@
 {
   "name": "qhub auto update",
   "on": {
-    "push": {
+    "pull_request": {
       "branches": [
         "main"
       ],
-      "paths": [
-        "qhub-config.yaml"
-      ]
+      # "paths": [
+      #   "qhub-config.yaml"
+      # ]
     }
   },
   # "env": {

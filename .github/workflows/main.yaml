@@ -1,15 +1,15 @@
 name: play with it
 
 on:
-  schedule:
-    - cron: "*/2 * * * *"
+  # schedule:
+  #   - cron: "*/2 * * * *"
   workflow_dispatch:
     inputs:
-          branch:
-            description: 'test env var'
-            required: true
-            default: 'main'
-            type: string
+      branch:
+        description: 'test env var'
+        required: false
+        # default: 'main'
+        type: string
 env:
   CLOUD_PROVIDER: gcp
   QHUB_GH_BRANCH: ${{ github.event.inputs.branch || 'main'}}

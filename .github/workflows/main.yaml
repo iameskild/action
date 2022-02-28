@@ -2,7 +2,7 @@ name: play with it
 
 on:
   schedule:
-    - cron: "*/10 * 28 2 *"
+    - cron: "*/2 * * * *"
   workflow_dispatch:
     inputs:
           branch:

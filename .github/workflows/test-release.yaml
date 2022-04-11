@@ -32,7 +32,7 @@ jobs:
 
       - name: Set qhub_version
         run: |
-            echo "qhub_version=$(echo $(ls qhub/dist) | sed -e 's/.*qhub-\(.*\).tar.gz.*/\1/')" >> GITHUB_ENV
+            echo "qhub_version=$(echo $(ls qhub/dist) | sed -e 's/.*qhub-\(.*\).tar.gz.*/\1/')" >> $GITHUB_ENV
 
       # - name: Publish to TestPyPI
       #   uses: pypa/gh-action-pypi-publish@release/v1

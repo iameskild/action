@@ -39,9 +39,9 @@ jobs:
       - name: Build source and binary
         run: python -m build --sdist --wheel qhub
 
-      - name: Set qhub_version
-        run: |
-            echo "qhub_version=$(echo $(ls qhub/dist) | sed -e 's/.*qhub-\(.*\).tar.gz.*/\1/')" >> $GITHUB_ENV
+      # - name: Set qhub_version
+      #   run: |
+      #       echo "qhub_version=$(echo $(ls qhub/dist) | sed -e 's/.*qhub-\(.*\).tar.gz.*/\1/')" >> $GITHUB_ENV
 
       - name: Publish to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
@@ -53,8 +53,9 @@ jobs:
 
       - name: Test install from TestPyPI
         run: |
-            pip install qhub==${{ env.qhub_version }}
-            --index-url https://test.pypi.org/simple/
+            pip install \
+            --index-url https://test.pypi.org/simple/ \
+            qhub==${{ github.event.inputs.qhub_tag }}
 
-      - name: Test
-        run: echo "${{ env.qhub_version }}"
+      # - name: Test
+      #   run: echo "${{ env.qhub_version }}"

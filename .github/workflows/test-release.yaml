@@ -18,9 +18,13 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v2
+
+      - name: Checkout Quansight/qhub
+        uses: actions/checkout@v2
         with:
-          name: Quansight/qhub
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          repository: Quansight/qhub
+          path: qhub
 
       - name: Build source and binary
         run: python -m build --sdist --wheel .

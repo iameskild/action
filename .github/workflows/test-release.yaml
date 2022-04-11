@@ -2,6 +2,10 @@ name: test publish
 
 on:
   workflow_dispatch:
+    inputs:
+      qhub_tag:
+        description: 'Tag for test PyPI release'
+        required: True
 
 jobs:
   test-pypi:
@@ -26,6 +30,11 @@ jobs:
           repository: Quansight/qhub
           path: qhub
           fetch-depth: 0
+      
+      - name: Create tag
+        run: |
+            cd qhub
+            git tag ${{ github.event.inputs.qhub_tag }}
 
       - name: Build source and binary
         run: python -m build --sdist --wheel qhub
@@ -34,18 +43,18 @@ jobs:
         run: |
             echo "qhub_version=$(echo $(ls qhub/dist) | sed -e 's/.*qhub-\(.*\).tar.gz.*/\1/')" >> $GITHUB_ENV
 
-      - name: Publish to TestPyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: __token__
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-          repository_url: https://test.pypi.org/legacy/
-          packages_dir: qhub/dist
+      # - name: Publish to TestPyPI
+      #   uses: pypa/gh-action-pypi-publish@release/v1
+      #   with:
+      #     user: __token__
+      #     password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+      #     repository_url: https://test.pypi.org/legacy/
+      #     packages_dir: qhub/dist
 
-      - name: Test install from TestPyPI
-        run: |
-            pip install qhub==${{ env.qhub_version }}
-            --index-url https://test.pypi.org/simple/
+      # - name: Test install from TestPyPI
+      #   run: |
+      #       pip install qhub==${{ env.qhub_version }}
+      #       --index-url https://test.pypi.org/simple/
 
       - name: Test
         run: echo "${{ env.qhub_version }}"

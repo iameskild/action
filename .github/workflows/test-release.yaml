@@ -25,13 +25,14 @@ jobs:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           repository: Quansight/qhub
           path: qhub
+          fetch-depth: 0
 
       - name: Build source and binary
-        run: python -m build --sdist --wheel .
+        run: python -m build --sdist --wheel qhub
 
       - name: Set qhub_version
         run: |
-            echo "qhub_version=$(echo $(ls dist) | sed -e 's/.*qhub-\(.*\).tar.gz.*/\1/')" >> GITHUB_ENV
+            echo "qhub_version=$(echo $(ls qhub/dist) | sed -e 's/.*qhub-\(.*\).tar.gz.*/\1/')" >> GITHUB_ENV
 
       # - name: Publish to TestPyPI
       #   uses: pypa/gh-action-pypi-publish@release/v1

@@ -47,4 +47,4 @@ jobs:
       #       --index-url https://test.pypi.org/simple/
 
       - name: Test
-        run: echo ${{ env.qhub_version }}
+        run: echo "${{ env.qhub_version }}"

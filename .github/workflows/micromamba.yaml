@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  pytest:
+  micromamba:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -31,3 +31,6 @@ jobs:
 
       - name: micromamba env list
         run: micromamba env list
+
+      - name: create new env
+        run: micromamba create --file environment-test.yml

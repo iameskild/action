@@ -1,6 +1,6 @@
 name: my_env
 channels:
-  - ./
+  - ./my_env
 dependencies:
   - tzdata
   - python-json-logger

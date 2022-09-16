@@ -28,3 +28,6 @@ jobs:
       
       - name: Which micromamba
         run: which micromamba
+
+      - name: micromamba env list
+        run: micromamba env list

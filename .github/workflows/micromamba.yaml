@@ -29,8 +29,11 @@ jobs:
       - name: Which micromamba
         run: which micromamba
 
+      - name: conda-vendor vendor
+        run: conda-vendor vendor --file environment-test.yml --solver micromamba --platform linux-64
+
+      - name: create local channel env
+        run: micromamba create --file environment-test-local-channel.yml --offline
+
       - name: micromamba env list
         run: micromamba env list
-
-      - name: create new env
-        run: micromamba create --file environment-test.yml

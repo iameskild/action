@@ -14,5 +14,4 @@ dependencies:
   - ruamel.yaml
   - urllib3
   - pip:
-    - -e .
     - conda-vendor

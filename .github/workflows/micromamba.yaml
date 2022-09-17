@@ -31,7 +31,7 @@ jobs:
         run: conda-vendor vendor --file environment-test.yml --solver conda --platform linux-64
 
       - name: create local channel env
-        run: conda env create --file environment-test-local-channel.yml --offline
+        run: micromamba create --file environment-test-local-channel.yml --offline
 
       - name: conda env list
         run: conda env list

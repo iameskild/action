@@ -5,6 +5,11 @@ channels:
 dependencies:
   - click
   - conda-vendor
+  - conda=4.12.0
+  - mamba
+  - micromamba  
+  - conda-lock=1.*
+  - conda-build  
   - jinja2
   - pip
   - pre-commit

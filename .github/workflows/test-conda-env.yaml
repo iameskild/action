@@ -14,14 +14,13 @@ jobs:
           ref: docker_test
           fetch-depth: 0
         
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - name: Install conda dependencies
+        uses: conda-incubator/setup-miniconda@v2
         with:
-          python-version: '3.10'
-          cache: 'pip'
-
-      - name: Install pip packages
-        run: pip install -r requirements.txt
+          python-version: "3.10"
+          activate-environment: base
+          environment-file: environment.yml
+          auto-activate-base: true
 
       - name: Run conda-vendor vendor
         run: |

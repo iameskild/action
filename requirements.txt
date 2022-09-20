@@ -1,3 +1,0 @@
-conda-vendor
-ruamel.yaml
-click

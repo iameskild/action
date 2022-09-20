@@ -14,13 +14,13 @@ jobs:
       - name: Checkout local repo
         uses: actions/checkout@v3
         with:
-          ref: docker_test
+          ref: docker_test    # branch name, not dir
           fetch-depth: 0
 
       - name: Checkout ib_manifest_util
         uses: actions/checkout@v3
         with:
-          ref: MetroStar/ib_manifest_util@main
+          repository: MetroStar/ib_manifest_util@dev
           fetch-depth: 0
         
       - name: Install conda dependencies

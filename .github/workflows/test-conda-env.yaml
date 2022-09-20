@@ -34,7 +34,7 @@ jobs:
       
       - name: Install ib_manifest_util
         run: |
-          pip install git+https://github.com/MetroStar/ib_manifest_util.git@master
+          pip install git+https://github.com/MetroStar/ib_manifest_util.git@dev
           conda list
           
       - name: Setup test

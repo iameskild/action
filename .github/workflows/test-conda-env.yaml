@@ -13,6 +13,12 @@ jobs:
         with:
           ref: docker_test
           fetch-depth: 0
+
+      - name: Checkout ib_manifest_util
+        uses: actions/checkout@v3
+        with:
+          name: MetroStar/ib_manifest_util@main
+          fetch-depth: 0
         
       - name: Install conda dependencies
         uses: conda-incubator/setup-miniconda@v2
@@ -21,8 +27,14 @@ jobs:
           activate-environment: base
           environment-file: environment.yml
           auto-activate-base: true
+      
+      - name: Setup ib_manifest_util test
+        run: |
+          pip install -e ./ib_manifest_util
+          mkdir docker_test
+          cp environment-test-local-channel.yml docker_test
 
       - name: Run conda-vendor vendor
+        working-directory: docker_test
         run: |
           conda-vendor vendor --file environment-test.yml --solver conda --platform linux-64
-          ls -alR 

@@ -1,5 +1,8 @@
 on: [push]
 
+env:
+  test-dir: docker_test
+
 jobs:
   test_conda_env:
     runs-on: ubuntu-latest
@@ -17,7 +20,7 @@ jobs:
       - name: Checkout ib_manifest_util
         uses: actions/checkout@v3
         with:
-          name: MetroStar/ib_manifest_util@main
+          ref: MetroStar/ib_manifest_util@main
           fetch-depth: 0
         
       - name: Install conda dependencies
@@ -28,13 +31,16 @@ jobs:
           environment-file: environment.yml
           auto-activate-base: true
       
-      - name: Setup ib_manifest_util test
+      - name: Install ib_manifest_util
+        working-directory: ib_manifest_util
+        run: pip install -e .
+          
+      - name: Setup test
         run: |
-          pip install -e ./ib_manifest_util
-          mkdir docker_test
-          cp environment-test-local-channel.yml docker_test
+          mkdir ${{ env.test-dir }}
+          cp environment-test-local-channel.yml ${{ env.test-dir }}
 
       - name: Run conda-vendor vendor
-        working-directory: docker_test
+        working-directory: ${{ env.test-dir }}
         run: |
           conda-vendor vendor --file environment-test.yml --solver conda --platform linux-64

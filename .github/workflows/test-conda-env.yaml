@@ -20,7 +20,8 @@ jobs:
       - name: Checkout ib_manifest_util
         uses: actions/checkout@v3
         with:
-          repository: MetroStar/ib_manifest_util@dev
+          repository: MetroStar/ib_manifest_util
+          ref: dev
           fetch-depth: 0
         
       - name: Install conda dependencies

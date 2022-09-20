@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: action/action.yaml
+        uses: iameskild/action/action.yaml
         with:
           who-to-greet: 'Racoon Rick'
       # Use the output from the `hello` step

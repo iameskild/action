@@ -40,7 +40,7 @@ jobs:
       - name: Setup test
         run: |
           mkdir ${{ env.test-dir }}
-          cp environment-test-local-channel.yml ${{ env.test-dir }}
+          cp environment-test-local-channel.yml environment-test.yml ${{ env.test-dir }}
 
       - name: Run conda-vendor vendor
         working-directory: ${{ env.test-dir }}

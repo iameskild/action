@@ -7,4 +7,4 @@ inputs:
     default: 'singleuser'
 runs:
   using: 'docker'
-  image: ${{inputs.ib_repo }}/Dockerfile
+  image: singleuser/Dockerfile

@@ -2,6 +2,7 @@ on: [push]
 
 env:
   test-dir: docker_test
+  ib_repo: singleuser
 
 jobs:
   test_conda_env:
@@ -17,13 +18,6 @@ jobs:
           ref: docker_test    # branch name, not dir
           fetch-depth: 0
 
-      - name: Checkout local repo
-        uses: actions/checkout@v3
-        with:
-          repository: https://repo1.dso.mil/dsop/opensource/metrostar/singleuser
-          ref: development
-          fetch-depth: 0
-
       - name: Install conda dependencies
         uses: conda-incubator/setup-miniconda@v2
         with:
@@ -37,17 +31,14 @@ jobs:
         run: |
           pip install git+https://github.com/MetroStar/ib_manifest_util.git@dev
           conda list
-          
+
       - name: Setup test
         run: |
+          git clone https://repo1.dso.mil/dsop/opensource/metrostar/${{ env.ib_repo }}.git
           mkdir ${{ env.test-dir }}
+          cp local_channel_env.yaml ${{ env.test-dir }}
 
-      
-      
-      # cp environment-test-local-channel.yml environment-test.yml ${{ env.test-dir }}
-
-
-      # - name: Run conda-vendor vendor
-      #   working-directory: ${{ env.test-dir }}
-      #   run: |
-      #     conda-vendor vendor --file environment-test.yml --solver conda --platform linux-64
+      - name: Run ib_manifest_util update_repo
+        working-directory: ${{ env.test-dir }}
+        run: |
+          ib_manifest_util update_repo --repo_dir ~/${{ env.ib_repo }} --dockerfile_version singleuser_test

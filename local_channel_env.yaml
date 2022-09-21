@@ -1,0 +1,6 @@
+name: local_channel_env
+channels:
+  - ./local_channel_env
+dependencies:
+  - tzdata
+  - python-json-logger

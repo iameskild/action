@@ -35,10 +35,11 @@ jobs:
       - name: Setup test
         run: |
           git clone https://repo1.dso.mil/dsop/opensource/metrostar/${{ env.ib_repo }}.git
-          mkdir ${{ env.test-dir }}
-          cp local_channel_env.yaml ${{ env.test-dir }}
+        
+        # mkdir ${{ env.test-dir }}
+        # cp local_channel_env.yaml ${{ env.test-dir }}
 
       - name: Run ib_manifest_util update_repo
-        working-directory: ${{ env.test-dir }}
+        # working-directory: ${{ env.test-dir }}
         run: |
-          ib_manifest_util update_repo --repo_dir ~/${{ env.ib_repo }} --dockerfile_version singleuser_test
+          ib_manifest_util update_repo --repo_dir ${{ env.ib_repo }} --dockerfile_version singleuser_test

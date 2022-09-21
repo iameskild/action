@@ -29,7 +29,7 @@ jobs:
       # replace with checkout action
       - name: Install ib_manifest_util
         run: |
-          pip install git+https://github.com/MetroStar/ib_manifest_util.git@dev
+          pip install git+https://github.com/MetroStar/ib_manifest_util.git@version
           conda list
 
       - name: Setup test

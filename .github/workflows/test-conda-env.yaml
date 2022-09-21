@@ -42,3 +42,5 @@ jobs:
 
       - name: Build Docker image
         uses: ./
+        with:
+          ib_repo: ${{ env.ib_repo }}

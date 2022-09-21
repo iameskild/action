@@ -1,15 +1,9 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
-# inputs:
-#   who-to-greet:  # id of input
-#     description: 'Who to greet'
-#     required: true
-#     default: 'World'
-# outputs:
-#   time: # id of output
-#     description: 'The time we greeted you'
+name: 'Build IB Docker image'
+inputs:
+  ib_repo:  # id of input
+    description: 'Iron Bank repo'
+    required: true
+    default: 'singleuser'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
-  # args:
-  #   - ${{ inputs.who-to-greet }}
+  image: ${{inputs.ib_repo }}/Dockerfile

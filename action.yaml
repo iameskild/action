@@ -1,4 +1,5 @@
 name: 'Build IB Docker image'
+description: 'Build IB Docker image'
 inputs:
   ib_repo:  # id of input
     description: 'Iron Bank repo'

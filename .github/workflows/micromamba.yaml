@@ -1,37 +1,37 @@
-name: Test Micromamba
+# name: Test Micromamba
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+# on:
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
 
-jobs:
-  micromamba:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash -l {0}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+# jobs:
+#   micromamba:
+#     runs-on: ubuntu-latest
+#     defaults:
+#       run:
+#         shell: bash -l {0}
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
 
-      - name: 'Install  conda dependencies'
-        uses: conda-incubator/setup-miniconda@v2
-        with:
-          python-version: "3.10"
-          activate-environment: test
-          environment-file: environment.yml
-          auto-activate-base: false
+#       - name: 'Install  conda dependencies'
+#         uses: conda-incubator/setup-miniconda@v2
+#         with:
+#           python-version: "3.10"
+#           activate-environment: test
+#           environment-file: environment.yml
+#           auto-activate-base: false
 
-      - name: Which conda
-        run: which conda
+#       - name: Which conda
+#         run: which conda
 
-      - name: conda-vendor vendor
-        run: conda-vendor vendor --file environment-test.yml --solver conda --platform linux-64
+#       - name: conda-vendor vendor
+#         run: conda-vendor vendor --file environment-test.yml --solver conda --platform linux-64
 
-      - name: create local channel env
-        run: micromamba create --file environment-test-local-channel.yml --offline
+#       - name: create local channel env
+#         run: micromamba create --file environment-test-local-channel.yml --offline
 
-      - name: conda env list
-        run: conda env list
+#       - name: conda env list
+#         run: conda env list

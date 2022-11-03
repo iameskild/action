@@ -22,8 +22,8 @@ jobs:
         run: |
           touch test.txt
           echo "Commit to the repo from a GHA" >> test.txt
-          git config user.email "eskild@doublee.io"
-          git config user.name "iameskild"
+          git config user.email "nobody@fake.com"
+          git config user.name "nobody"
           git add . 
           git diff 
           git commit -m "Commit from GHA"

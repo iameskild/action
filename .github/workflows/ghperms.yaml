@@ -1,32 +1,32 @@
-name: Permissions
+# name: Permissions
 
-on:
-  push:
-    branches: [ main ]
+# on:
+#   push:
+#     branches: [ main ]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      # - uses: actions/checkout@v2
-      # - name: Setup tmate session
-      #   uses: mxschmitt/action-tmate@v3
-      #   timeout-minutes: 15
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Setup tmate session
+#         uses: mxschmitt/action-tmate@v3
+#         timeout-minutes: 15
 
-      - name: Checkout repo yoo
-        uses: actions/checkout@master
-        # with:
-        #   token: ${{ secrets.GITHUB_TOKEN }}
+#       - name: Checkout repo yoo
+#         uses: actions/checkout@master
+#         with:
+#           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit to repo
-        run: |
-          touch test.txt
-          echo "Commit to the repo from a GHA" >> test.txt
-          git config user.email "nobody@fake.com"
-          git config user.name "nobody"
-          git add . 
-          git diff 
-          git commit -m "Commit from GHA"
-          git push origin main
+#       - name: Commit to repo
+#         run: |
+#           touch test.txt
+#           echo "Commit to the repo from a GHA" >> test.txt
+#           git config user.email "nobody@fake.com"
+#           git config user.name "nobody"
+#           git add . 
+#           git diff 
+#           git commit -m "Commit from GHA"
+#           git push origin main
 
       

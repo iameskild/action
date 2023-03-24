@@ -9,6 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-      timeout-minutes: 15
+    # - name: Setup tmate session
+    #   uses: mxschmitt/action-tmate@v3
+    #   timeout-minutes: 15
+
+    - name: get event details
+      run: |
+        echo "FULL_NAME=$(github.event.pull_request.head.repo.full_name)" >> $GITHUB_ENV
+
+    - name: test
+      run: |
+        echo ${{ env.FULL_NAME }}
+        

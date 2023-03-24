@@ -16,7 +16,7 @@ jobs:
 
     - name: get event details
       run: |
-        echo $(github.event)
+        echo ${{ toJson(github.event) }}
       # echo "FULL_NAME=$(github.event.pull_request.head.repo.full_name)" >> $GITHUB_ENV
 
     # - name: test

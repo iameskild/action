@@ -16,9 +16,10 @@ jobs:
 
     - name: get event details
       run: |
-        echo "FULL_NAME=$(github.event.pull_request.head.repo.full_name)" >> $GITHUB_ENV
+        echo $(github.event)
+      # echo "FULL_NAME=$(github.event.pull_request.head.repo.full_name)" >> $GITHUB_ENV
 
-    - name: test
-      run: |
-        echo ${{ env.FULL_NAME }}
+    # - name: test
+    #   run: |
+    #     echo ${{ env.FULL_NAME }}
         

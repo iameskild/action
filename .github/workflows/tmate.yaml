@@ -21,6 +21,7 @@ jobs:
         echo "${{ toJson(github.event.pull_request.base.repo.full_name) }}"
       # echo "FULL_NAME=$(github.event.pull_request.head.repo.full_name)" >> $GITHUB_ENV
 
-    # - name: test
-    #   run: |
-    #     echo ${{ env.FULL_NAME }}
+    - name: test
+      if: github.event.pull_request.base.repo.full_name == github.event.pull_request.head.repo.full_name
+      run: |
+        echo "YELLO WORLD!"

@@ -1,14 +1,28 @@
 # name: tmate
 
-# on:
-#   push:
-#     branches: [ main ]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  issue_comment:
+    types: [ created ]
 
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@v3
-#     - name: Setup tmate session
-#       uses: mxschmitt/action-tmate@v3
-#       timeout-minutes: 15
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: get event details
+      run: |
+        echo "${{ toJson(github) }}"
+
+    - name: test
+      if: >-
+        (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) ||
+        (github.event_name == 'issue_comment' && github.event.comment.body == '/bot run tests' && github.event.comment.author_association == 'COLLABORATOR') ||
+        (github.event_name == 'push' && github.ref == 'refs/heads/main')
+      run: |
+        echo "YELLO WORLD!"

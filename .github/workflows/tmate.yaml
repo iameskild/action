@@ -19,6 +19,22 @@ jobs:
       run: |
         echo "${{ toJson(github) }}"
 
+    - name: set output
+      id: set
+      shell: python
+      run: |
+        import os
+        name = 'publishing'
+        value = True
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
+            print(f'{name}={value}', file=fh)
+    
+    - name: get output
+      if: steps.set.outputs.publishing
+      run: |
+        echo "publishing is true"
+
+
     - name: test
       if: >-
         (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) ||

@@ -24,10 +24,9 @@ jobs:
       shell: python
       run: |
         import os
-        name = 'publishing'
         value = True
         with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
-            print(f'{name}={value}', file=fh)
+            print(f'publishing={value}', file=fh)
     
     - name: get output
       if: steps.set.outputs.publishing
